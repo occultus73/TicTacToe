@@ -6,6 +6,7 @@ import io.github.occultus73.tictactoe.model.GameState.State.*
 import kotlin.random.Random
 
 class GameState() {
+
     private val playerSymbol: Square = CROSS
     private val computerSymbol: Square = NOUGHT
 
@@ -30,6 +31,7 @@ class GameState() {
         )
 
         gameState.value = PLAYING
+        computerGo()
     }
 
     fun playerClick(row: Int, item: Int) {
