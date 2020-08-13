@@ -21,6 +21,17 @@ class GameState() {
         arrayOf(EMPTY, EMPTY, EMPTY)
     )
 
+    fun resetGameState(){
+
+        squareMatrix = arrayOf(
+            arrayOf(EMPTY, EMPTY, EMPTY),
+            arrayOf(EMPTY, EMPTY, EMPTY),
+            arrayOf(EMPTY, EMPTY, EMPTY)
+        )
+
+        gameState.value = PLAYING
+    }
+
     fun playerClick(row: Int, item: Int) {
         if (squareMatrix[row][item] == EMPTY && gameState.value == PLAYING) {
             squareMatrix[row][item] = playerSymbol
@@ -81,6 +92,7 @@ class GameState() {
         return symbol
     }
 
+
     private fun checkDiagonalStrikes(): Square {
         // check top left to bottom right
         return if (squareMatrix[0][0] == squareMatrix[1][1] &&
@@ -96,10 +108,9 @@ class GameState() {
         else EMPTY
     }
 
-
     private fun computerGo() {
-        var x = 0
-        var y = 0
+        var x: Int
+        var y: Int
         do {
             x = Random.nextInt(0, 3)
             y = Random.nextInt(0, 3)
@@ -108,16 +119,5 @@ class GameState() {
         squareMatrix[x][y] = computerSymbol
         checkIfWon()
         checkIfDrawn()
-    }
-
-    fun resetGameState(){
-
-        squareMatrix = arrayOf(
-            arrayOf(EMPTY, EMPTY, EMPTY),
-            arrayOf(EMPTY, EMPTY, EMPTY),
-            arrayOf(EMPTY, EMPTY, EMPTY)
-        )
-
-        gameState.value = PLAYING
     }
 }
